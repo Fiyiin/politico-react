@@ -7,7 +7,7 @@ module.exports = merge(common, {
     contentBase: path.join(__dirname, 'src'),
     hot: true,
     open: true,
-    port: 2019,
+    port: 4001,
     historyApiFallback: true
   },
   mode: 'development',
