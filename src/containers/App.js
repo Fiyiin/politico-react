@@ -6,6 +6,8 @@ import About from '../components/Landing page/About';
 import Footer from '../components/Landing page/Footer';
 import Services from '../components/Landing page/Services';
 import More from '../components/Landing page/More';
+import Admin from '../components/Admin';
+import User from '../components/User';
 
 const landingPage = () => (
   <div>
@@ -22,6 +24,8 @@ const App = () => (
   <Router>
     <Switch>
       <Route path="/" exact component={landingPage} />
+      <Route path="/admin" exact component={Admin} />
+      <Route path="/user" exact component={User} />
     </Switch>
   </Router>
 );
