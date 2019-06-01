@@ -1,4 +1,3 @@
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -8,13 +7,22 @@ module.exports = {
         include: [path.resolve(__dirname, 'src')],
         loader: 'babel-loader',
         query: {
-          presets: ['@babel/preset-env', '@babel/preset-react'],
+          presets: [
+            'minify',
+            ['@babel/preset-env', {
+              targets: {
+                node: '10',
+              },
+            },
+            ],
+            '@babel/preset-react',
+          ],
         },
-        test: /\.js$/
+        test: /\.js$/,
       },
       {
         test: /\.(scss|css)$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(png|jpeg|jpg|gif|svg)$/,
@@ -30,8 +38,8 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-          }
-        ]
+          },
+        ],
       },
       {
         test: /plugin\.css$/,
@@ -39,7 +47,7 @@ module.exports = {
           'style-loader', 'css-loader',
         ],
       },
-    ]
+    ],
   },
 
   output: {
@@ -47,7 +55,7 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
     sourceMapFilename: 'bundle.map',
-    publicPath: '/'
+    publicPath: '/',
   },
   devtool: '#source-map',
   optimization: {
@@ -55,15 +63,14 @@ module.exports = {
       cacheGroups: {
         vendors: {
           priority: -10,
-          test: /[\\/]node_modules[\\/]/
-        }
+          test: /[\\/]node_modules[\\/]/,
+        },
       },
 
       chunks: 'async',
       minChunks: 1,
       minSize: 30000,
-      name: true
+      name: true,
     },
-    minimizer: [new UglifyJsPlugin()]
   },
 };
