@@ -14,7 +14,7 @@ const Login = ({
     hide={hide}
   />
 ) : (
-  user.is_admin ? <Redirect to="/admin" /> : <Redirect to="/user" />
+  user.is_admin ? <Redirect to="/admin" /> : <Redirect to="/tab" />
 );
 
 const matchDispatchToProps = dispatch => ({
