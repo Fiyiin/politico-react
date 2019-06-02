@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   Tab, Tabs, TabList, TabPanel,
 } from 'react-tabs';
+import Parties from '../containers/Parties';
 
 const TabHandler = ({ user }) => (
   <Tabs className="tabs">
@@ -10,7 +11,7 @@ const TabHandler = ({ user }) => (
       <div className="admin-container">
         <img src="./assets/images/1.png" alt="logo" className="avatar" />
         <div className="card-content">
-          <h3>{`${user.firstname} ${user.lasttname}`}</h3>
+          <h3>{`${user.firstname} ${user.lastname}`}</h3>
           <h4>{`${user.email}`}</h4>
           <a href="../public/contest.html" className=" a tablinks tab-button">Run For Office</a>
         </div>
@@ -24,7 +25,7 @@ const TabHandler = ({ user }) => (
 
     <div className="tab-flex">
       <TabPanel>
-        <h2 className="tabcontent">Party</h2>
+        <Parties className="tabcontent" />
       </TabPanel>
       <TabPanel>
         <h2 className="tabcontent">Offices</h2>

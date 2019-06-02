@@ -8,6 +8,8 @@ import Services from '../components/Landing page/Services';
 import More from '../components/Landing page/More';
 import Admin from '../components/Admin';
 import Tab from './Tab';
+import Nav from './Nav';
+import Parties from './Parties';
 
 const landingPage = () => (
   <div>
@@ -20,12 +22,21 @@ const landingPage = () => (
   </div>
 );
 
+const home = () => (
+  <div>
+    <Nav />
+    <Tab />
+  </div>
+);
+
 const App = () => (
   <Router>
     <Switch>
       <Route path="/" exact component={landingPage} />
       <Route path="/admin" exact component={Admin} />
-      <Route path="/tab" exact component={Tab} />
+      <Route path="/home" exact component={home} />
+      <Route path="/parties" exact component={Parties} />
+
     </Switch>
   </Router>
 );
