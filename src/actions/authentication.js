@@ -28,3 +28,8 @@ export const loginFailed = error => ({
   type: 'SIGNUP_FAILED',
   payload: { error },
 });
+
+export const logoutUser = () => {
+  delete localStorage.token;
+  return { type: 'LOGOUT' };
+};

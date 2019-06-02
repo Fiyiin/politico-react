@@ -619,7 +619,7 @@ input[type=checkbox] {
     margin: 26px 8px 26px 30px;
 }
 
-.modal button {
+.modal-body button {
     background-color: #4CAF50;
     color: white;
     padding: 10px;

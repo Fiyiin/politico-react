@@ -1,10 +1,13 @@
-const initialState = {
-  user: {},
+import jwtDecode from 'jwt-decode';
+
+const initialState = (token => ({
+  currentUser: token ? jwtDecode(token) : {},
   token: null,
   isLoading: false,
   redirect: false,
   error: null,
-};
+}))(localStorage.token);
+
 
 export default function authentication(state = initialState, action) {
   switch (action.type) {
@@ -17,7 +20,7 @@ export default function authentication(state = initialState, action) {
     case 'SIGNUP_SUCCEEDED': {
       return {
         ...state,
-        user: action.payload.user,
+        currentUser: jwtDecode(action.payload.token),
         token: action.payload.token,
         isLoading: false,
         error: null,
@@ -38,7 +41,7 @@ export default function authentication(state = initialState, action) {
     case 'LOGIN_SUCCEEDED': {
       return {
         ...state,
-        user: action.payload.user,
+        currentUser: jwtDecode(action.payload.token),
         token: action.payload.token,
         isLoading: false,
         redirect: true,
@@ -49,6 +52,16 @@ export default function authentication(state = initialState, action) {
       return {
         ...state,
         error: action.payload.error,
+      };
+    }
+    case 'LOGOUT': {
+      return {
+        ...state,
+        currentUser: {},
+        token: null,
+        isLoading: false,
+        redirect: false,
+        error: null,
       };
     }
     default: {

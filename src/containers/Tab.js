@@ -4,19 +4,19 @@ import PropTypes from 'prop-types';
 import TabHandler from '../components/TabHandler';
 
 const Tab = ({
-  user,
+  currentUser,
 }) => (
   <TabHandler
-    user={user}
+    user={currentUser}
   />
 );
 
-const mapStateToProps = ({ auth: { user } }) => ({
-  user,
+const mapStateToProps = ({ auth: { currentUser } }) => ({
+  currentUser,
 });
 
 Tab.propTypes = {
-  user: PropTypes.shape({
+  currentUser: PropTypes.shape({
     firstname: PropTypes.string,
     lasttname: PropTypes.string,
     email: PropTypes.string,

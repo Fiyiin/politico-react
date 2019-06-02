@@ -11,7 +11,6 @@ const LoginForm = ({ hide, userLogin }) => (
         <h2>Welcome Back!</h2>
       </div>
       <Formik
-        className="animate"
         initialValues={{
           email: '', password: '',
         }}
@@ -21,7 +20,7 @@ const LoginForm = ({ hide, userLogin }) => (
         }}
       >
         {({ isSubmitting }) => (
-          <Form>
+          <Form className="animate">
             <div className="formFields">
 
               <Field type="text" placeholder="Enter Username" name="email" />

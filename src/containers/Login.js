@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { loginStarted } from '../actions';
-import LoginForm from '../components/LoginForm';
+import { loginStarted } from '../actions/authentication';
+import LoginForm from '../components/auth/LoginForm';
 
 const Login = ({
-  user, userLogin, hide, isAuth,
+  currentUser, userLogin, hide, isAuth,
 }) => !isAuth ? (
   <LoginForm
     isAuth={isAuth}
@@ -14,7 +14,7 @@ const Login = ({
     hide={hide}
   />
 ) : (
-  user.is_admin ? <Redirect to="/admin" /> : <Redirect to="/tab" />
+  currentUser.isAdmin ? <Redirect to="/admin" /> : <Redirect to="/home" />
 );
 
 const matchDispatchToProps = dispatch => ({
@@ -22,9 +22,9 @@ const matchDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = (state, { hide }) => {
-  const { user, token } = state.auth;
+  const { currentUser, token } = state.auth;
   return {
-    hide, user, token, isAuth: !!token,
+    hide, currentUser, token, isAuth: !!token,
   };
 };
 
@@ -32,8 +32,8 @@ Login.propTypes = {
   hide: PropTypes.func.isRequired,
   userLogin: PropTypes.func.isRequired,
   isAuth: PropTypes.bool.isRequired,
-  user: PropTypes.shape({
-    is_admin: PropTypes.bool,
+  currentUser: PropTypes.shape({
+    isAdmin: PropTypes.bool,
   }).isRequired,
 };
 

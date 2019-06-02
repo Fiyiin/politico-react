@@ -11,7 +11,7 @@ const Header = () => (
       <li><a href="/">About</a></li>
       <li>
         <ToggleContent
-          toggle={show => <button type="button" id="open" onClick={show}>Login</button>}
+          toggle={show => <a href="#" id="open" onClick={show}>Login</a>}
           content={hide => <Login hide={hide} />}
         />
       </li>

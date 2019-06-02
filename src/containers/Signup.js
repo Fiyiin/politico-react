@@ -2,20 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { signupStarted } from '../actions';
-import SignupForm from '../components/SignupForm';
+import { signupStarted } from '../actions/authentication';
+import SignupForm from '../components/auth/SignupForm';
 
 const Signup = ({
-  user, isLoading, userSignup, isAuth, hide,
+  currentUser, isLoading, userSignup, isAuth, hide,
 }) => !isAuth ? (
   <SignupForm
-    user={user}
+    user={currentUser}
     isLoading={isLoading}
     userSignup={userSignup}
     hide={hide}
   />
 ) : (
-  user.is_admin ? <Redirect to="/admin" /> : <Redirect to="/user" />
+  currentUser.isAdmin ? <Redirect to="/admin" /> : <Redirect to="/home" />
 );
 
 const matchDispatchToProps = dispatch => ({
@@ -24,10 +24,10 @@ const matchDispatchToProps = dispatch => ({
 
 const mapStateToProps = (state, { hide }) => {
   const {
-    user, isLoading, error, token,
+    currentUser, isLoading, error, token,
   } = state.auth;
   return {
-    user, isLoading, error, hide, token, isAuth: !!token,
+    currentUser, isLoading, error, hide, token, isAuth: !!token,
   };
 };
 
@@ -36,7 +36,7 @@ Signup.propTypes = {
   userSignup: PropTypes.func.isRequired,
   isAuth: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  user: PropTypes.shape({
+  currentUser: PropTypes.shape({
     is_admin: PropTypes.bool,
   }).isRequired,
 };
