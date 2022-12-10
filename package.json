@@ -52,7 +52,7 @@
     "axios": "^0.19.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.13.2",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "formik": "^1.5.7",
     "jwt-decode": "^2.2.0",
     "lodash.delay": "^4.1.1",
